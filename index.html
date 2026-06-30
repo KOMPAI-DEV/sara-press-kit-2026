@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sara Callie — EPK 2026</title>
+  <meta name="description" content="Electronic Press Kit — Sara Callie, 2026. Pop Ambition. Gospel Soul." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --gold:     196, 154,  60;
+      --denim:     43,  74, 114;
+      --bordeaux: 139,  26,  45;
+    }
+    .c-gold      { color: rgba(var(--gold),     0.58); }
+    .c-gold-dim  { color: rgba(var(--gold),     0.38); }
+    .c-denim     { color: rgba(var(--denim),    0.65); }
+    .c-bordeaux  { color: rgba(var(--bordeaux), 0.90); }
+
+    /* Full-page background photo */
+    body {
+      background-color: #080808;
+      background-image:
+        linear-gradient(rgba(6,6,8,0.62), rgba(6,6,8,0.62)),
+        url('Bilder/nyest nyest ya ya.jpeg');
+      background-size: cover;
+      background-position: center top;
+      background-attachment: fixed;
+    }
+
+    .hero-atmosphere {
+      background: radial-gradient(
+        ellipse 110% 55% at 50% -5%,
+        rgba(var(--denim), 0.14) 0%,
+        transparent 65%
+      );
+    }
+
+    .name-shimmer {
+      background: linear-gradient(135deg, #c4404f 0%, #8B1A2D 40%, #5a0f1c 65%, #8B1A2D 82%, #c4404f 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       PRINT / PDF  —  A4 single-page press kit
+       ════════════════════════════════════════════════════════════ */
+    @media print {
+
+      @page { size: A4 portrait; margin: 11mm 14mm 10mm 14mm; }
+
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      html, body {
+        background: #080808 !important;
+        background-image: none !important;
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 8.5pt;
+        line-height: 1.5;
+        color: white;
+      }
+
+      .no-print { display: none !important; }
+
+      .name-shimmer {
+        -webkit-text-fill-color: #ffffff !important;
+        background: none !important;
+        color: #ffffff !important;
+      }
+
+      /* ── Page canvas ── */
+      .print-canvas {
+        display: grid !important;
+        grid-template-rows: auto 1fr auto !important;
+        height: 276mm !important;
+        overflow: hidden !important;
+      }
+
+      /* ── 1. Hero: compact title band ── */
+      #hero {
+        min-height: unset !important;
+        display: grid !important;
+        grid-template-columns: 1fr auto !important;
+        grid-template-rows: auto auto !important;
+        align-items: end !important;
+        column-gap: 8mm !important;
+        padding: 0 0 5mm !important;
+        border-bottom: 0.4pt solid rgba(var(--gold), 0.35) !important;
+        background: none !important;
+      }
+      #hero .hero-name {
+        grid-column: 1 !important; grid-row: 1 / 3 !important;
+        font-size: 33pt !important; line-height: 0.88 !important;
+        margin-bottom: 0 !important; letter-spacing: -0.03em !important;
+      }
+      #hero .hero-epk-label {
+        grid-column: 2 !important; grid-row: 1 !important;
+        text-align: right; font-size: 6pt !important; margin-bottom: 1.5mm !important;
+      }
+      #hero .hero-tagline {
+        grid-column: 2 !important; grid-row: 2 !important;
+        text-align: right; font-size: 7.5pt !important;
+        margin-bottom: 0 !important; max-width: unset !important;
+      }
+      #hero .hero-cta { display: none !important; }
+
+      /* ── 2. Main: two-column bio + photos ── */
+      #main-content {
+        display: grid !important;
+        grid-template-columns: 1fr 61mm !important;
+        align-items: stretch !important;
+        gap: 7mm !important;
+        padding: 5.5mm 0 !important;
+        overflow: hidden !important;
+      }
+
+      #bio {
+        max-width: unset !important; margin: 0 !important; padding: 0 !important;
+      }
+      #bio .bio-section-label {
+        font-size: 6pt !important; letter-spacing: 0.3em; margin-bottom: 3.5mm !important;
+      }
+      #bio .bio-text {
+        font-size: 8pt !important; line-height: 1.55 !important;
+        margin-bottom: 4.5mm !important; color: rgba(255,255,255,.72) !important;
+      }
+      #bio .bio-list {
+        border-top: 0.3pt solid rgba(255,255,255,.1) !important;
+        padding-top: 3.5mm !important; margin-bottom: 0 !important;
+        display: flex !important; flex-direction: column !important; gap: 2.5mm !important;
+      }
+      #bio .bio-list li {
+        display: flex !important; gap: 4mm !important;
+        font-size: 7.5pt !important; align-items: baseline !important;
+      }
+      #bio .list-label {
+        min-width: 22mm !important; width: 22mm !important;
+        margin-bottom: 0 !important; font-size: 6pt !important;
+      }
+      #bio blockquote {
+        margin-top: 4.5mm !important; padding-left: 3mm !important;
+        border-left: 1.2pt solid rgba(var(--gold),.40) !important;
+      }
+      #bio blockquote p {
+        font-size: 7.5pt !important; line-height: 1.5 !important;
+        color: rgba(255,255,255,.48) !important;
+      }
+      #bio blockquote cite { font-size: 6pt !important; margin-top: 1.5mm !important; display: block; }
+
+      #press {
+        max-width: unset !important; margin: 0 !important; padding: 0 !important;
+        display: flex !important; flex-direction: column !important;
+      }
+      #press .press-section-label {
+        font-size: 6pt !important; letter-spacing: 0.3em; margin-bottom: 3.5mm !important;
+      }
+      #press .photo-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        grid-template-rows: 1fr 1fr !important;
+        gap: 2.5mm !important; flex: 1 !important;
+      }
+      #press .photo-grid > div {
+        grid-column: auto !important; grid-row: auto !important;
+        aspect-ratio: unset !important; height: auto !important;
+        display: flex !important; align-items: flex-end !important;
+      }
+      #press .photo-caption {
+        font-size: 6pt !important; margin-top: 2mm !important;
+        color: rgba(255,255,255,.22) !important;
+      }
+
+      /* ── 3. Contact: footer bar ── */
+      #contact {
+        max-width: unset !important; margin: 0 !important;
+        padding: 4mm 0 0 !important;
+        border-top: 0.4pt solid rgba(var(--gold),.28) !important;
+        display: grid !important;
+        grid-template-columns: 1fr auto !important;
+        align-items: center !important; gap: 8mm !important;
+      }
+      #contact .contact-label { display: none !important; }
+      #contact .copyright     { display: none !important; }
+      #contact .contact-info  {
+        font-size: 7.5pt !important; line-height: 1.55 !important;
+        margin-bottom: 0 !important; color: rgba(255,255,255,.65) !important;
+      }
+      #contact nav {
+        display: flex !important; flex-direction: column !important;
+        align-items: flex-end !important; gap: 1.8mm !important;
+        font-size: 6.5pt !important; letter-spacing: 0.25em;
+      }
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: { gold: '#C49A3C' }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#080808] text-white font-sans antialiased">
+
+  <!-- PDF / Print button (screen only) -->
+  <button
+    onclick="window.print()"
+    class="no-print fixed bottom-6 right-6 z-50 text-[10px] tracking-[0.3em] uppercase px-6 py-3 transition-all duration-200"
+    style="border:1px solid rgba(var(--gold),.35); color:rgba(var(--gold),.55); background:rgba(8,8,8,.88); backdrop-filter:blur(8px);"
+    onmouseover="this.style.borderColor='rgba(196,154,60,.7)';this.style.color='rgba(196,154,60,.9)';"
+    onmouseout="this.style.borderColor='rgba(196,154,60,.35)';this.style.color='rgba(196,154,60,.55)';"
+  >
+    PDF / Print
+  </button>
+
+  <div class="print-canvas">
+
+    <!-- ── HERO ──────────────────────────────────────────────── -->
+    <section id="hero" class="hero-atmosphere min-h-screen flex flex-col items-center justify-center text-center px-6 py-24">
+      <span class="hero-epk-label block text-[10px] tracking-[0.4em] uppercase c-gold mb-12">
+        Electronic Press Kit 2026
+      </span>
+      <h1 class="hero-name name-shimmer font-black tracking-tighter leading-none uppercase mb-6"
+          style="font-size: clamp(4.5rem, 18vw, 14rem);">
+        Sara<br />Callie
+      </h1>
+      <p class="hero-tagline text-base md:text-lg font-light tracking-wide c-denim mb-14 max-w-xs">
+        Pop Ambition. Gospel Soul.
+      </p>
+
+      <!-- Spotify embed — hidden in print -->
+      <div class="no-print w-full max-w-lg mt-12">
+        <iframe
+          data-testid="embed-iframe"
+          style="border-radius:12px"
+          src="https://open.spotify.com/embed/track/3ghGGIkDamCMFATYbn0LGH?utm_source=generator&si=ca1aeec15d3c43a0"
+          width="100%"
+          height="152"
+          frameborder="0"
+          allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- ── MAIN CONTENT ───────────────────────────────────────── -->
+    <div id="main-content">
+
+      <!-- Bio column -->
+      <section id="bio" class="max-w-xl mx-auto px-6 py-24 md:py-32">
+        <p class="bio-section-label text-[10px] tracking-[0.4em] uppercase c-gold mb-10">Biography</p>
+        <p class="bio-text text-lg md:text-xl font-light leading-[1.8] text-white/70 mb-14">
+          Sara Callie grew up singing in Danish gospel choirs, absorbing from an early age the
+          belief that singing is about emotional delivery, not just hitting notes &mdash; and that
+          voices are best thought of in layers rather than single melodies. In 2022 she competed
+          in the Danish Melodi Grand Prix with the group Confessions and the song
+          &ldquo;Hallelujah&rdquo;, finishing second on the national stage. That experience,
+          combined with a place at the Martin Garrix Music Academy, gave her the confidence
+          and drive to pursue a solo career. She relocated to Stockholm and built her team
+          with the indie music company Komp Music, who signed her in early 2026 to launch her solo career. She writes and arranges all her own vocals alongside a live studio choir &mdash; a process
+          she calls building a sonic cathedral. Her debut single
+          <strong><span class="c-bordeaux">&ldquo;Ruins of Us&rdquo;</span></strong>, released
+          12 June 2026, is a song about resilience and the belief that rebuilding yourself
+          after a heartbreak can become your greatest strength. Her follow-up
+          <strong><span class="c-bordeaux">&ldquo;Godspeed&rdquo;</span></strong> is coming soon. Many songs are writen and produced and will be relesed dusinf the 2026 and the worls will see the full potential of Sara Callie.
+          Debut EP is planed due in the end of 2026.
+        </p>
+        <ul class="bio-list border-t border-white/[0.08] pt-10 space-y-6 text-sm">
+          
+          <li class="flex flex-col sm:flex-row sm:gap-8">
+            <span class="list-label c-gold-dim shrink-0 w-36 mb-1 sm:mb-0 uppercase tracking-widest text-[10px]">Debut single</span>
+            <span class="text-white/65"><strong><span class="c-bordeaux">&ldquo;Ruins of Us&rdquo;</span></strong> &mdash; 12 June 2026</span>
+          </li>
+          <li class="flex flex-col sm:flex-row sm:gap-8">
+            <span class="list-label c-gold-dim shrink-0 w-36 mb-1 sm:mb-0 uppercase tracking-widest text-[10px]">Next release</span>
+            <span class="text-white/65"><strong><span class="c-bordeaux">&ldquo;Godspeed&rdquo;</span></strong> &mdash; <span style="color:rgba(var(--gold),.55)">Coming soon</span></span>
+          </li>
+          <li class="flex flex-col sm:flex-row sm:gap-8">
+            <span class="list-label c-gold-dim shrink-0 w-36 mb-1 sm:mb-0 uppercase tracking-widest text-[10px]">Vibe / Theme</span>
+            <span class="text-white/65">Controlled Contrast &mdash; pop with gospel depth. Scandi cool meets Y2K high glam.</span>
+          </li>
+          <li class="flex flex-col sm:flex-row sm:gap-8">
+            <span class="list-label c-gold-dim shrink-0 w-36 mb-1 sm:mb-0 uppercase tracking-widest text-[10px]">Key credits</span>
+            <span class="text-white/65">Danish Melodi Grand Prix &middot; Martin Garrix Music Academy &middot; A-Camp alumna</span>
+          </li>
+        </ul>
+        <blockquote class="mt-16" style="border-left:2px solid rgba(var(--gold),.38); padding-left:1.4rem;">
+          <p class="text-base md:text-lg font-light italic text-white/45 leading-relaxed">
+            &ldquo;It&rsquo;s like building a sonic cathedral out of my own voice,
+            brick by brick, layer by layer &mdash; and then a real choir walks in
+            and gives everything that living, breathing warmth. When you blend
+            the two together, it becomes something that feels bigger than any
+            one voice could ever be on its own.&rdquo;
+          </p>
+          <cite class="block mt-3 text-[10px] tracking-[0.3em] uppercase c-gold not-italic">Sara Callie</cite>
+        </blockquote>
+      </section>
+
+      <!-- Photos column -->
+      <section id="press" class="px-6 py-24 md:py-32 max-w-5xl mx-auto">
+        <p class="press-section-label text-[10px] tracking-[0.4em] uppercase c-denim mb-10">Press Media</p>
+        <!-- Screen: 3-col editorial · Print: 2x2 grid -->
+        <div class="photo-grid grid grid-cols-2 md:grid-cols-3 md:auto-rows-[260px] gap-3">
+          <!-- Press Photo 01 — real image with download -->
+          <div class="aspect-[3/4] md:aspect-auto md:row-span-2 relative overflow-hidden group"
+               style="border:1px solid rgba(var(--denim),.18);">
+            <img
+              src="Bilder/nyest nyest ya ya.jpeg"
+              alt="Sara Callie — Press Photo 01"
+              class="w-full h-full object-cover object-top"
+            />
+            <!-- Hover overlay with download -->
+            <div class="absolute inset-0 flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 no-print"
+                 style="background:linear-gradient(to top, rgba(6,6,8,0.88) 0%, transparent 55%);">
+              <div class="flex items-end justify-between">
+                <span class="text-[9px] c-denim uppercase tracking-[0.25em]">Press Photo 01</span>
+                <a
+                  href="Bilder/nyest nyest ya ya.jpeg"
+                  download="Sara_Callie_Press_Photo_01.jpeg"
+                  class="flex items-center gap-1.5 text-[9px] uppercase tracking-[0.2em] px-3 py-2 transition-colors"
+                  style="border:1px solid rgba(var(--gold),.5); color:rgba(var(--gold),.9); background:rgba(6,6,8,.7);"
+                  title="Download full resolution"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Download
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- Press Photo 02 — real image with download -->
+          <div class="col-span-1 md:col-span-2 aspect-[16/9] md:aspect-auto relative overflow-hidden group"
+               style="border:1px solid rgba(var(--denim),.18);">
+            <img
+              src="Bilder/Sara Callie 1.png"
+              alt="Sara Callie — Press Photo 02"
+              class="w-full h-full object-cover object-center"
+            />
+            <div class="absolute inset-0 flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 no-print"
+                 style="background:linear-gradient(to top, rgba(6,6,8,0.88) 0%, transparent 55%);">
+              <div class="flex items-end justify-between">
+                <span class="text-[9px] c-denim uppercase tracking-[0.25em]">Press Photo 02</span>
+                <a
+                  href="Bilder/Sara Callie 1.png"
+                  download="Sara_Callie_Press_Photo_02.png"
+                  class="flex items-center gap-1.5 text-[9px] uppercase tracking-[0.2em] px-3 py-2 transition-colors"
+                  style="border:1px solid rgba(var(--gold),.5); color:rgba(var(--gold),.9); background:rgba(6,6,8,.7);"
+                  title="Download full resolution"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Download
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- Press Photo 03 — real image with download -->
+          <div class="aspect-[3/4] md:aspect-auto relative overflow-hidden group"
+               style="border:1px solid rgba(var(--denim),.18);">
+            <img
+              src="Bilder/Bild 2 Spotify.jpg"
+              alt="Sara Callie — Press Photo 03"
+              class="w-full h-full object-cover object-center"
+            />
+            <div class="absolute inset-0 flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 no-print"
+                 style="background:linear-gradient(to top, rgba(6,6,8,0.88) 0%, transparent 55%);">
+              <div class="flex items-end justify-between">
+                <span class="text-[9px] c-denim uppercase tracking-[0.25em]">Press Photo 03</span>
+                <a
+                  href="Bilder/Bild 2 Spotify.jpg"
+                  download="Sara_Callie_Press_Photo_03.jpg"
+                  class="flex items-center gap-1.5 text-[9px] uppercase tracking-[0.2em] px-3 py-2 transition-colors"
+                  style="border:1px solid rgba(var(--gold),.5); color:rgba(var(--gold),.9); background:rgba(6,6,8,.7);"
+                  title="Download full resolution"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Download
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- Cover art — Ruins of Us -->
+          <div class="aspect-square md:aspect-auto relative overflow-hidden group"
+               style="border:1px solid rgba(var(--gold),.22);">
+            <img
+              src="Bilder/RuinsOfUs.png"
+              alt="Ruins of Us — Single Cover Art"
+              class="w-full h-full object-cover object-center"
+            />
+            <div class="absolute inset-0 flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 no-print"
+                 style="background:linear-gradient(to top, rgba(6,6,8,0.88) 0%, transparent 55%);">
+              <div class="flex items-end justify-between">
+                <span class="text-[9px] c-gold-dim uppercase tracking-[0.25em]">Ruins of Us — Cover Art</span>
+                <a
+                  href="Bilder/RuinsOfUs.png"
+                  download="Sara_Callie_Ruins_of_Us_Cover.png"
+                  class="flex items-center gap-1.5 text-[9px] uppercase tracking-[0.2em] px-3 py-2 transition-colors"
+                  style="border:1px solid rgba(var(--gold),.5); color:rgba(var(--gold),.9); background:rgba(6,6,8,.7);"
+                  title="Download full resolution"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Download
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="photo-caption mt-6 text-xs text-white/20 tracking-wide">
+          All images are high-res and cleared for press use.
+        </p>
+      </section>
+
+    </div><!-- end #main-content -->
+
+    <!-- ── CONTACT & LINKS ───────────────────────────────────── -->
+    <section id="contact" class="max-w-xl mx-auto px-6 py-24 md:py-32 border-t border-white/[0.08]">
+      <p class="contact-label text-[10px] tracking-[0.4em] uppercase c-gold mb-10">Contact</p>
+      <p class="contact-info text-base md:text-lg font-light text-white/65 leading-relaxed mb-14">
+        Management / Press Contact<br />
+        <span class="text-white font-medium">Khosro Sharifi &mdash; Komp Music AB</span><br />
+        <a href="mailto:info@kompmusic.com"
+           class="text-white/60 hover:text-white transition-colors underline underline-offset-4 decoration-white/20">
+          info@kompmusic.com
+        </a>
+      </p>
+      <nav class="flex flex-wrap gap-8 text-[11px] tracking-[0.3em] uppercase">
+        <a href="https://open.spotify.com/artist/6dZjpGdooJ7kgoA0Ameerp"
+           target="_blank" rel="noopener" class="text-white/30 hover:text-white transition-colors">Spotify</a>
+        <a href="https://music.apple.com/us/artist/sara-callie/6773006838"
+           target="_blank" rel="noopener" class="text-white/30 hover:text-white transition-colors">Apple Music</a>
+        <a href="https://www.instagram.com/saracalliemusic/" target="_blank" rel="noopener" class="text-white/30 hover:text-white transition-colors">Instagram</a>
+        <a href="https://www.tiktok.com/@saracallieofficial" target="_blank" rel="noopener" class="text-white/30 hover:text-white transition-colors">TikTok</a>
+      </nav>
+      <p class="copyright mt-20 text-[10px] text-white/15 tracking-widest uppercase">
+        &copy; 2026 Sara Callie / Komp Music AB
+      </p>
+    </section>
+
+  </div><!-- end .print-canvas -->
+
+</body>
+</html>
